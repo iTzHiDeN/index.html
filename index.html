@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Copiar para Área de Transferência</title>
+</head>
+<body>
+
+    <a href="SEU_LINK_DO_PASTEBIN" onclick="copiarParaAreaTransferencia(event)">Clique para Copiar</a>
+
+    <script>
+        function copiarParaAreaTransferencia(event) {
+            event.preventDefault();
+
+            // Obter o link do atributo href
+            const linkPastebin = event.target.getAttribute('href');
+
+            // Criar um elemento de texto temporário
+            const inputTemporario = document.createElement('textarea');
+            inputTemporario.value = linkPastebin;
+
+            // Adicionar o elemento à DOM
+            document.body.appendChild(inputTemporario);
+
+            // Selecionar o texto dentro do elemento
+            inputTemporario.select();
+            inputTemporario.setSelectionRange(0, 99999); // Para dispositivos móveis
+
+            // Copiar o texto para a área de transferência
+            document.execCommand('copy');
+
+            // Remover o elemento temporário
+            document.body.removeChild(inputTemporario);
+
+            // Exibir uma mensagem (opcional)
+            alert('Link copiado para a área de transferência!');
+        }
+    </script>
+
+</body>
+</html>
